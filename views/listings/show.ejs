@@ -1,4 +1,4 @@
-<!-- <% layout("/layout/boilerplate") -%>
+<% layout("/layout/boilerplate") -%>
 <script>
     const mapToken = " <%= process.env.MAP_TOKEN %>"
 </script>
@@ -27,68 +27,7 @@
             <button class="btn btn-dark offset-5 ">DELETE</button>
         </form>
         </div>
-<% } %> -->
-
-<!-- New code -->
-
-<% layout("/layout/boilerplate") -%>
-    <script>
-        const mapToken = "<%= process.env.MAP_TOKEN %>";
-    </script>
-
-    <div class="row mt-3">
-        <div class="col-8 offset-3">
-            <h3>
-                <%= Listing.title %>
-            </h3>
-        </div>
-
-        <!-- Image carousel -->
-        <div class="col-6 offset-3">
-            <div id="listingCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <% Listing.image.forEach((img, index)=> { %>
-                        <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                            <img src="<%= img.url %>" class="d-block w-100 show-img" alt="Listing image">
-                        </div>
-                        <% }) %>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#listingCarousel"
-                    data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#listingCarousel"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Listing content -->
-        <div class="card col-6 offset-3 show-card listing-card mt-3">
-            <div class="card-body">
-                <p class="card-text">
-                <p><i>Owned By: <%= Listing.owner.username %></i></p>
-                <%= Listing.description %> <br>
-                    &#8377;<%= Listing.price.toLocaleString("en-IN") %> <br>
-                        <%= Listing.location %>, <%= Listing.country %>
-                                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Show Edit/Delete if owner -->
-    <% if (currUser && currUser._id.equals(Listing.owner._id)) { %>
-        <div class="btns">
-            <a href="/listings/<%= Listing._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit</a>
-            <form method="post" action="/listings/<%= Listing._id %>?_method=DELETE">
-                <button class="btn btn-dark offset-5">DELETE</button>
-            </form>
-        </div>
-        <% } %>
-
+<% } %>
 
 
 <!-- Review page -->
